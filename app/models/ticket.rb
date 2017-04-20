@@ -1,6 +1,6 @@
 class Ticket < ApplicationRecord
   belongs_to :passenger
-  has_many :train
-  belongs_to :train.route.first
-  belongs_to :train.route.last
+  belongs_to :train
+  belongs_to :first_station, class_name: 'RailwayStation'
+  belongs_to :last_station, class_name: "RailwayStation"
 end
