@@ -7,7 +7,7 @@
 
 <p>
   <strong>Маршрут:</strong>
-  <% if @train.route.name.present? %>
+  <% if @train.route.present? %>
     <%= @train.route.name %>
   <% else %>
     Не указанно

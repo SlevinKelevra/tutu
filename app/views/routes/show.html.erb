@@ -7,10 +7,12 @@
 
 <p>
   <strong>Поезда:</strong>
-  <% if @route.trains.number.present? %>
-    <%= @route.trains.number %>
+  <% if @route.trains.present? %>
+    <% @route.trains.each do |train| %>
+      <%= train.number %>
+    <% end %>
   <% else %>
-    поездов на маршруте нет
+    Поездов на маршруте нет
   <% end %>
 </p>
 
@@ -18,17 +20,18 @@
   <strong>Станции в маршруте:</strong>
 </p>
 
-p>
-<% if @route.railway_stations.empty? %>
-  Станции в маршруте нет
-<% else %>
+<p>
+  <% if @route.railway_stations.empty? %>
+    Станции в маршруте нет
+  <% else %>
     <ul>
       <% @route.railway_stations.each do |station| %>
-        <%= station.title %>
+      <li> <%= station.title %> </li>
       <% end %>
     </ul>
-<% end %>
+  <% end %>
 </p>
+
 
 <%= link_to 'Редактировать', edit_route_path(@route) %> |
 <%= link_to 'Назад', routes_path %>
