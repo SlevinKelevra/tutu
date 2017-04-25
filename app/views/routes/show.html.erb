@@ -5,5 +5,30 @@
   <%= @route.name %>
 </p>
 
+<p>
+  <strong>Поезда:</strong>
+  <% if @route.trains.number.present? %>
+    <%= @route.trains.number %>
+  <% else %>
+    поездов на маршруте нет
+  <% end %>
+</p>
+
+<p>
+  <strong>Станции в маршруте:</strong>
+</p>
+
+p>
+<% if @route.railway_stations.empty? %>
+  Станции в маршруте нет
+<% else %>
+    <ul>
+      <% @route.railway_stations.each do |station| %>
+        <%= station.title %>
+      <% end %>
+    </ul>
+<% end %>
+</p>
+
 <%= link_to 'Редактировать', edit_route_path(@route) %> |
 <%= link_to 'Назад', routes_path %>
