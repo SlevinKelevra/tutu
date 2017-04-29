@@ -9,8 +9,7 @@ class TrainsController < ApplicationController
 
   # GET /trains/1
   # GET /trains/1.json
-  def show
-  end
+  def show; end
 
   # GET /trains/new
   def new
@@ -18,8 +17,7 @@ class TrainsController < ApplicationController
   end
 
   # GET /trains/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /trains
   # POST /trains.json
