@@ -1,10 +1,6 @@
 class WagonsController < ApplicationController
   before_action :set_wagon, only: [:show, :edit, :update, :destroy]
 
-  module TYPE_WAGON
-    TYPE_WAGON = ['123', 'rtyu']
-  end
-
   def index
     @wagons = Wagon.all
   end
