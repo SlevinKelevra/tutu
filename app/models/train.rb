@@ -6,7 +6,7 @@ class Train < ApplicationRecord
 
 
   def calculate_wagons
-    @data = {plac: 0, plac_up: 0, plac_down: 0, coupe: 0, coupe_up: 0, coupe_down: 0 }
+    @data = { plac: 0, plac_up: 0, plac_down: 0, coupe: 0, coupe_up: 0, coupe_down: 0 }
     self.wagons.each do |wagon|
       if wagon.wagon_type == "Coupe"
         @data[:coupe] += 1
