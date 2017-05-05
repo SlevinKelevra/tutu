@@ -15,8 +15,33 @@
 </p>
 
 <p>
-  <strong>Wagons:</strong><br/>
-  <%= @train.calculate_wagons %>
+  <strong>Вагоны:</strong>
+  <% if @train.wagons.empty? %>
+      Вагоны у поезда отсутствуют
+  <% else %>
+    <table>
+      <thead>
+      <tr>
+        <th>Number</th>
+        <th>Type</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <% @train.wagons_sort.each do |wagon| %>
+          <tr>
+            <td><%= link_to "#{wagon.number_id}", wagon_path(wagon)%></td>
+            <td><%= wagon.type %></td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+<% end %>
+</p>
+
+<p>
+  <strong>Всего верхних мест в вагоне купе:</strong>
+  <%= @train.calculate_places('CoupeWagon', :upper_berth) %>
 </p>
 
 <%= link_to 'Edit', edit_train_path(@train) %> |

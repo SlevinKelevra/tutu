@@ -26,6 +26,11 @@
     <%= f.collection_select :current_station_id, RailwayStation.all, :id, :title %>
   </div>
 
+  <div class="field">
+    <%= f.label :sort_wagons, 'Сортировка вагонов в обратном порядке' %>
+    <%= f.check_box :sort_wagons %>
+  </div>
+
 
   <div class="actions">
     <%= f.submit %>
