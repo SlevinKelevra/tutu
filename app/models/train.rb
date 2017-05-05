@@ -4,7 +4,7 @@ class Train < ApplicationRecord
   has_many :tickets
   has_many :wagons, foreign_key: :number_id
 
-  def wagons_sort
+  def sort_type
     wagons.order(number_id: sort_wagons ? :desc : :asc)
   end
 
