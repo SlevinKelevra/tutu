@@ -2,10 +2,10 @@ class Train < ApplicationRecord
   belongs_to :route
   belongs_to :current_station, class_name: 'RailwayStation', foreign_key: :current_station_id
   has_many :tickets
-  has_many :wagons, foreign_key: :number_id
+  has_many :wagons, foreign_key: :number_train
 
   def sort_type
-    wagons.order(number_id: sort_wagons ? :desc : :asc)
+    wagons.order(number_wagon: :sort_from_head ? :desc : :asc)
   end
 
   def calculate_places(wagon_type, places)

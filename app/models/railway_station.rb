@@ -5,5 +5,6 @@ class RailwayStation < ApplicationRecord
 
   validates :title, presence: true
 
-  scope :sort, -> { order('railway_stations_routes.station_number') }
+  scope :sort, -> { joins(:railway_stations_routes).order('railway_stations_routes.station_number') }
+
 end

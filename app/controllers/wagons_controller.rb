@@ -12,7 +12,7 @@ class WagonsController < ApplicationController
   end
 
   def create
-    train = Train.find(params[:wagon][:number_id])
+    train = Train.find(params[:wagon][:number_train])
     @wagon = train.wagons.new(wagon_params)
 
     if @wagon.save
