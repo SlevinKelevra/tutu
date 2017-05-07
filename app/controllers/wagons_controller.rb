@@ -1,41 +1,41 @@
 class WagonsController < ApplicationController
   before_action :set_wagon, only: [:show, :edit, :update, :destroy]
+  before_action :set_train, only: [:new, :create]
 
   def index
     @wagons = Wagon.all
   end
 
-  def show; end
+  def show
+  end
 
   def new
     @wagon = Wagon.new
   end
 
-  def create
-    train = Train.find(params[:wagon][:train_id])
-    @wagon = train.wagons.new(wagon_params)
+  def edit
+  end
 
+  def create
+    @wagon = @train.wagons.new(wagons_params)
     if @wagon.save
-      redirect_to @wagon
+      redirect_to @train, notice: 'Wagon was successfully created.'
     else
       render :new
     end
   end
 
-  def edit; end
-
   def update
-
-    if @wagon.update(wagon_params)
-      redirect_to @wagon
+    if @wagon.update(wagons_params)
+      redirect_to wagon_path(@wagon), notice: 'Wagon was successfully updated.'
     else
-      render :new
+      render :edit
     end
   end
 
   def destroy
     @wagon.destroy
-    redirect_to wagons_path
+    redirect_to wagons_url, notice: 'Wagon was successfully destroyed.'
   end
 
   private
@@ -44,7 +44,11 @@ class WagonsController < ApplicationController
     @wagon = Wagon.find(params[:id])
   end
 
-  def wagon_params
-    params.require(:wagon).permit(:wagon_type, :lower_berths, :upper_berth)
+  def set_train
+    @train = Train.find(params[:train_id])
+  end
+
+  def wagons_params
+    params.require(:wagon).permit(:type, :upper_berth, :lower_berths, :side_top_seats, :side_bottom_seats, :seat_places, :train_id)
   end
 end

@@ -1,20 +1,34 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Вагоны</h1>
+<h1>Wagons</h1>
 
 <table>
   <thead>
   <tr>
-    <th>Title</th>
+    <th>ID</th>
+    <th>Type</th>
+    <th>Train</th>
+    <th>Number</th>
     <th colspan="3"></th>
   </tr>
   </thead>
 
   <tbody>
-  <%= render @wagons %>
+  <% @wagons.each do |wagon| %>
+      <tr>
+        <td><%= wagon.id %></td>
+        <td><%= wagon.class %></td>
+        <td><%= wagon.number_wagon %></td>
+        <td><%= link_to 'Show', wagon_path(wagon) %></td>
+        <td><%= link_to 'Edit', edit_wagon_path(wagon) %></td>
+        <td><%= link_to 'Destroy', wagon_path(wagon), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+  <% end %>
   </tbody>
 </table>
 
 <br>
 
-<%= link_to 'Добавить новый вагон', new_wagon_path %>
+<%= link_to 'New Wagon', new_wagon_path %> <br/>
+
+<%= link_to 'Back to Main Page', home_page_index_path %>
