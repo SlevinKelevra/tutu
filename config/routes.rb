@@ -9,7 +9,9 @@ Rails.application.routes.draw do
   
   resources :railway_stations do
     patch :update_position, on: :member
+    patch :update_times, on: :member
   end
+
   resources :routes
   resources :tickets
   resources :wagons
