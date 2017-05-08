@@ -22,7 +22,7 @@
 <% if @trains %>
     <% @trains.each do |train| %>
         <p>
-          Train: <%= train.number %> | <%= train.route.title %> | <%= train.route.start_time.strftime("%H:%M") %> | <%= train.route.end_time.strftime("%H:%M") %>
+          Train: <%= train.number %> | <%= train.route.name %> | <%= train.route.start_time %> | <%= train.route.end_time %>
           <%= link_to 'Buy Ticket', new_ticket_path(train_id: train.id, start_station_id: @start_station, end_station_id: @end_station) %>
         </p>
     <% end %>

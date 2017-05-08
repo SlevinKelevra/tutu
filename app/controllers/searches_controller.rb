@@ -1,7 +1,6 @@
 class SearchesController < ApplicationController
 
-  def show
-  end
+  def show; end
 
   def create
     @trains = Search.trains(search_params[:start_station_id], search_params[:end_station_id])
