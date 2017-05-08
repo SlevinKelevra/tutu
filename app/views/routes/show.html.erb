@@ -24,11 +24,39 @@
   <% if @route.railway_stations.empty? %>
     Станции в маршруте нет
   <% else %>
-    <ul>
-      <% @route.railway_stations.sort.each do |station| %>
-      <li> <%= station.title %> </li>
+    <table>
+      <thead>
+        <tr>
+          <td width="100px">Название</td>
+          <td>Позиция</td>
+        </tr>
+      </thead>
+      <tbody>
+      <% @route.railway_stations.ordered.each do |station| %>
+      <tr>
+        <td> <%= station.title %> </td>
+        <td>
+        <%= form_tag update_position_railway_station_path(station), method: :patch do %>
+              <%= number_field_tag :position, station.position_in(@route) %>
+              <%= hidden_field_tag :route_id, @route.id %>
+              <%= submit_tag 'Изменить' %>
+          <% end %>
+
+          <%= form_tag update_times_railway_station_path(station), method: :patch do %>
+            <td>
+              <%= time_field_tag :arrive_time, station.arrive_time_in(@route) %>
+            </td>
+            <td>
+              <%= time_field_tag :departure_time, station.departure_time_in(@route) %>
+              <%= hidden_field_tag :route_id, @route.id %>
+              <%= submit_tag "Изменить" %>
+            </td>
+        <% end %>
+        </td>
+      </tr>
       <% end %>
-    </ul>
+      </tbody>
+    </table>
   <% end %>
 </p>
 
