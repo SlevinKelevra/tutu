@@ -10,11 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170507202226) do
+ActiveRecord::Schema.define(version: 20170509215504) do
 
   create_table "passengers", force: :cascade do |t|
-    t.string  "name"
-    t.integer "ticket_id"
+    t.string   "name"
+    t.integer  "ticket_id"
+    t.string   "email",                  default: "",    null: false
+    t.string   "encrypted_password",     default: "",    null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email"
+    t.boolean  "admin",                  default: false
+    t.string   "first_name"
+    t.string   "last_name"
+    t.index ["email"], name: "index_passengers_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_passengers_on_reset_password_token", unique: true
     t.index ["ticket_id"], name: "index_passengers_on_ticket_id"
   end
 
@@ -46,6 +60,8 @@ ActiveRecord::Schema.define(version: 20170507202226) do
     t.string  "passenger_fio"
     t.string  "passport_number"
     t.integer "train_id"
+    t.integer "passenger_id"
+    t.index ["passenger_id"], name: "index_tickets_on_passenger_id"
     t.index ["train_id"], name: "index_tickets_on_train_id"
   end
 

@@ -30,7 +30,7 @@
       <tbody>
       <% @train.sort_wagons_by_number.each do |wagon| %>
           <tr>
-            <td><%= link_to "#{wagon.number_wagon}", wagon_path(wagon)%></td>
+            <td><%= link_to "#{wagon.number_wagon}", admin_wagon_path(wagon)%></td>
             <td><%= wagon.type %></td>
           </tr>
       <% end %>
@@ -45,8 +45,8 @@
 </p>
 
 <p>
-  <%= link_to 'Добавить вагон', new_train_wagon_path(@train) %>
+  <%= link_to 'Добавить вагон', new_admin_train_wagon_path(@train) %>
 </p>
 
-<%= link_to 'Edit', edit_train_path(@train) %> |
-<%= link_to 'Back', trains_path %>
+<%= link_to 'Edit', edit_admin_train_path(@train) %> |
+<%= link_to 'Back', admin_trains_path %>
