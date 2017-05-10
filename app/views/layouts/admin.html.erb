@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tutu-Admin</title>
+  <%= csrf_meta_tags %>
+
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
+
+<body>
+<p id="notice" class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
+
+<% if passenger_signed_in? %>
+    <%= link_to "Exit", destroy_passenger_session_path, method: :delete %>
+    <p>Account <%= current_passenger.email %> </p>
+<% else %>
+    <%= link_to "Sign up", new_passenger_session_path %>
+<% end %>
+<%= yield %>
+</body>
+
+<footer>
+  <tr>
+    <td>"(с) 2017 Басалаев Владимир. Учебный проект в </td>
+    <td><a href="http://www.thinknetica.com" target = "_blank">онлайн-школе Thinknetica"</a></td>
+  </tr>
+</footer>
+
+</html>
