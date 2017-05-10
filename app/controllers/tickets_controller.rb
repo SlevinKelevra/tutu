@@ -2,7 +2,7 @@ class TicketsController < ApplicationController
   before_action :authenticate_passenger!, only: [:create, :destroy]
 
   def index
-    @tickets = current_user.tickets
+    @tickets = current_passenger.tickets
   end
 
   def new
