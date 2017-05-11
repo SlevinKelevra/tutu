@@ -19,7 +19,7 @@ class Route < ApplicationRecord
   private
 
   def set_title
-    self.title = "#{railway_stations.first.title} - #{railway_stations.last.title}"
+    self.name = "#{railway_stations.first.title} - #{railway_stations.last.title}"
   end
 
   def stations_count

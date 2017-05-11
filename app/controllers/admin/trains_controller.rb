@@ -33,14 +33,10 @@ class Admin::TrainsController < Admin::BaseController
   # PATCH/PUT /trains/1
   # PATCH/PUT /trains/1.json
   def update
-    respond_to do |format|
-      if @train.update(train_params)
-        format.html { redirect_to @train, notice: 'Train was successfully updated.' }
-        format.json { render :show, status: :ok, location: @train }
-      else
-        format.html { render :edit }
-        format.json { render json: @train.errors, status: :unprocessable_entity }
-      end
+    if @train.update(train_params)
+      redirect_to [:admin, @train], notice: 'Train was successfully updated.'
+    else
+      render :edit
     end
   end
 
