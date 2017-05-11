@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @wagon.class %>
+</p>
+
+<p>
+  <strong>Current Train:</strong>
+  <% if @wagon.train.present? %>
+      <%= @wagon.train.number %>
+  <% else %>
+      Not train
+  <% end %>
+</p>
+
+<p>
+  <strong>Places:</strong><br/>
+  <% @wagon.places.each do |place, count| %>
+      <%= "#{place} = #{count}" %> <br/>
+  <% end %>
+</p>
+
+<%= link_to 'Edit', edit_admin_wagon_path(@wagon) %> |
+<%= link_to 'Back', admin_wagons_path %>

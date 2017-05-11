@@ -1,0 +1,52 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Number:</strong>
+  <%= @train.number %>
+</p>
+
+<p>
+  <strong>Маршрут:</strong>
+  <% if @train.route.present? %>
+    <%= @train.route.name %>
+  <% else %>
+    Не указанно
+  <% end %>
+</p>
+
+<p>
+  <strong>Вагоны:</strong>
+  <% if @train.wagons.empty? %>
+      Вагоны у поезда отсутствуют
+  <% else %>
+    <table>
+      <thead>
+      <tr>
+        <th>Number</th>
+        <th>Type</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <% @train.sort_wagons_by_number.each do |wagon| %>
+          <tr>
+            <td><%= link_to "#{wagon.number_wagon}", admin_wagon_path(wagon)%></td>
+            <td><%= wagon.type %></td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+<% end %>
+</p>
+
+<p>
+  <strong>Всего верхних мест в вагоне купе:</strong>
+  <%= @train.calculate_places('CoupeWagon', :upper_berth) %>
+</p>
+
+<p>
+  <%= link_to 'Добавить вагон', new_admin_train_wagon_path(@train) %>
+</p>
+
+<%= link_to 'Edit', edit_admin_train_path(@train) %> |
+<%= link_to 'Back', admin_trains_path %>
