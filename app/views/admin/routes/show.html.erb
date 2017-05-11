@@ -1,12 +1,7 @@
-<p id="notice"><%= notice %></p>
+<h1><%= t('.title') %>: <%= @route.name %></h1>
 
 <p>
-  <strong>Название станции:</strong>
-  <%= @route.name %>
-</p>
-
-<p>
-  <strong>Поезда:</strong>
+  <strong><%=t('.trains')%></strong>
   <% if @route.trains.present? %>
     <% @route.trains.each do |train| %>
       <%= train.number %>
@@ -17,19 +12,21 @@
 </p>
 
 <p>
-  <strong>Станции в маршруте:</strong>
+  <strong><%= t('.stations') %></strong>
 </p>
 
 <p>
   <% if @route.railway_stations.empty? %>
-    Станции в маршруте нет
+      <%= t('.empty_stations') %>
   <% else %>
     <table>
       <thead>
-        <tr>
-          <td width="100px">Название</td>
-          <td>Позиция</td>
-        </tr>
+      <tr>
+        <th width="200px"><%= t('.table_title_station') %></th>
+        <th><%= t('.table_position') %></th>
+        <th><%= t('.table_arrive') %></th>
+        <th><%= t('.table_departure') %></th>
+      </tr>
       </thead>
       <tbody>
       <% @route.railway_stations.ordered.each do |station| %>
@@ -61,5 +58,5 @@
 </p>
 
 
-<%= link_to 'Редактировать', edit_admin_route_path(@route) %> |
-<%= link_to 'Назад', admin_routes_path %>
+<%= link_to t('common.edit'), edit_admin_route_path(@route), :class => "btn btn-primary" %> |
+<%= link_to t('common.back'), admin_routes_path, :class => "btn btn-primary" %>

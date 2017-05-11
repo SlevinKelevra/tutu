@@ -1,10 +1,12 @@
 class Admin::RoutesController < Admin::BaseController
   before_action :set_route, only: [:show, :edit, :update, :destroy]
+
   def index
     @routes = Route.all
   end
 
-  def show; end
+  def show
+  end
 
   def new
     @route = Route.new
@@ -12,22 +14,21 @@ class Admin::RoutesController < Admin::BaseController
 
   def create
     @route = Route.new(route_params)
-
     if @route.save
-      redirect_to @route
+      redirect_to [:admin, @route]
     else
       render :new
     end
   end
 
-  def edit; end
+  def edit
+  end
 
   def update
-
     if @route.update(route_params)
-      redirect_to @route
+      redirect_to [:admin, @route]
     else
-      render :new
+      render :edit
     end
   end
 

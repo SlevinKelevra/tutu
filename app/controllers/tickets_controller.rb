@@ -29,6 +29,7 @@ class TicketsController < ApplicationController
         format.html { redirect_to tickets_url, notice: 'Ticket was successfully destroyed.' }
       end
     end
+
   private
 
   def ticket_params

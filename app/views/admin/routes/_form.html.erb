@@ -2,14 +2,15 @@
     <%= render 'common/errors', resource: @route %>
 
     <div class="field">
-      <%= f.label :railway_station_ids, 'Станции' %>
+      <%= f.label :railway_station_ids, t( 'admin.railway_stations.index.title')%>
       <%= f.collection_select :railway_station_ids, RailwayStation.all, :id, :title, {}, { multiple: true }  %>
     </div>
+
     <div class="field">
-      <%= f.label :name %>
+      <%= f.label :name, t( 'admin.routes.show.table_title_station') %>
       <%= f.text_field :name %>
     </div>
     <div class="actions">
-      <%= f.submit "#{@route.new_record? ? 'Создать' : 'Изменить'}" %>
+      <%= f.submit "#{@route.new_record? ? 'Создать' : 'Изменить'}", :class => "btn btn-primary" %>
     </div>
 <% end %>
