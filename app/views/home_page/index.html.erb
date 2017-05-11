@@ -1,8 +1,13 @@
-<h1>Tutu</h1>
+<h1><%= t('.title') %></h1>
 
-<%= link_to 'Список станций', admin_railway_stations_path %>
-<%= link_to 'Список поездов', admin_trains_path %>
-<%= link_to 'Список маршрутов', admin_routes_path %>
-<%= link_to 'Список билетов', admin_tickets_path %>
-
-
+<div class="row">
+  <div class="col-md-4">
+    <ul class="nav nav-pills nav-stacked">
+      <li><%= link_to t('.list_stations'), admin_railway_stations_path %></li>
+      <li><%= link_to t('.list_trains'), admin_trains_path %></li>
+      <li><%= link_to t('.list_routes'), admin_routes_path %></li>
+      <li><%= link_to t('.list_carriages'), admin_wagons_path %></li>
+      <li><%= link_to t('.list_tickets'), admin_tickets_path %></li>
+    </ul>
+  </div>
+</div>

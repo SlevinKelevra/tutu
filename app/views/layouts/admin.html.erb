@@ -13,10 +13,10 @@
 <p class="alert"><%= alert %></p>
 
 <% if passenger_signed_in? %>
-    <%= link_to "Exit", destroy_passenger_session_path, method: :delete %>
-    <p>Account <%= current_passenger.email %> </p>
+    <%= link_to t('common.exit'), destroy_passenger_session_path, method: :delete %>
+    <p> <%= t('common.account')%>: <%=current_passenger.email %> </p>
 <% else %>
-    <%= link_to "Sign up", new_passenger_session_path %>
+    <%= link_to t('common.sign'), new_passenger_session_path %>
 <% end %>
 <%= yield %>
 </body>

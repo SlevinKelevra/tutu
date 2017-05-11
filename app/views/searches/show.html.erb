@@ -1,22 +1,18 @@
 <p>Find Tickets</p>
 
-<table>
-  <tbody>
-  <tr>
+<div class="row">
     <%= form_tag search_path do %>
-        <td>
-          <%= label :firs_station_id, "Begin Station" %>
-          <%= collection_select :stations, :start_station_id, RailwayStation.all, :id, :title %>
-        </td>
-        <td>
-          <%= label :last_station_id, "End Station" %>
-          <%= collection_select :stations, :end_station_id, RailwayStation.all, :id, :title %>
-          <%= submit_tag "Search" %>
-        </td>
-    <% end %>
-  </tr>
-  </tbody>
-</table>
+      <div class="col-md-4">
+        <%= collection_select :stations, :start_station_id, RailwayStation.all, :id, :title, {}, {class: 'form-control'} %>
+      </div>
+      <div class="col-md-4">
+        <%= collection_select :stations, :end_station_id, RailwayStation.all, :id, :title, {}, {class: 'form-control'} %>
+      </div>
+      <div class="col-md-4">
+        <%= submit_tag "Search",  class: 'btn btn-primary find' %>
+      </div>
+<% end %>
+</div>
 
 <p> Search Result </p>
 <% if @trains %>

@@ -1,5 +1,4 @@
 class Admin::RailwayStationsController < Admin::BaseController
-  before_action :authenticate_passenger!
   before_action :set_railway_station, only: [:show, :edit, :update, :destroy, :update_position]
 
   # GET /railway_stations
