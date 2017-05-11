@@ -4,6 +4,8 @@ class Train < ApplicationRecord
   has_many :tickets
   has_many :wagons, foreign_key: :train_id
 
+  validates :number, presence: true
+
   scope :station_in_route, ->(station) { joins(route: :railway_stations).where("railway_station_id = ?", station) }
 
   def sort_wagons_by_number

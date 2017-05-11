@@ -23,15 +23,10 @@ class Admin::TrainsController < Admin::BaseController
   # POST /trains.json
   def create
     @train = Train.new(train_params)
-
-    respond_to do |format|
-      if @train.save
-        format.html { redirect_to @train, notice: 'Train was successfully created.' }
-        format.json { render :show, status: :created, location: @train }
-      else
-        format.html { render :new }
-        format.json { render json: @train.errors, status: :unprocessable_entity }
-      end
+    if @train.save
+      redirect_to [:admin, @train], notice: 'Train was successfully created.'
+    else
+      render :new
     end
   end
 
@@ -49,14 +44,9 @@ class Admin::TrainsController < Admin::BaseController
     end
   end
 
-  # DELETE /trains/1
-  # DELETE /trains/1.json
   def destroy
     @train.destroy
-    respond_to do |format|
-      format.html { redirect_to trains_url, notice: 'Train was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to admin_trains_url, notice: 'Train was successfully destroyed.'
   end
 
   private
