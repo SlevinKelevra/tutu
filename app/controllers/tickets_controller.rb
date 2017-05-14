@@ -23,7 +23,7 @@ class TicketsController < ApplicationController
 
   def update
     if @ticket.update(ticket_params)
-      redirect_to admin_tickets_url, notice: 'Ticket was successfully updated.'
+      redirect_to tickets_url, notice: 'Ticket was successfully updated.'
     else
       render :edit
     end
@@ -31,7 +31,7 @@ class TicketsController < ApplicationController
 
   def destroy
     @ticket.destroy
-    redirect_to admin_tickets_url, notice: 'Ticket was successfully destroyed.'
+    redirect_to tickets_url, notice: 'Ticket was successfully destroyed.'
   end
 
   private
