@@ -26,13 +26,9 @@ class TicketsController < ApplicationController
     @ticket = Ticket.find(params[:id])
     @ticket.destroy
     redirect_to ticket_url
-    end
   end
 
   private
-
-  private
-
 
   def ticket_params
     params.require(:ticket).permit(:passenger_fio, :passport_number, :first_station_id, :last_station_id, :train_id)
