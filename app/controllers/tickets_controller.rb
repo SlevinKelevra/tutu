@@ -1,5 +1,5 @@
 class TicketsController < ApplicationController
-  before_action :authenticate_passenger!, only: [:create, :destroy]
+  before_action :set_ticket, only: [:show, :edit, :update, :destroy]
 
   def index
     @tickets = Ticket.all
