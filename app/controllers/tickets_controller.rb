@@ -1,5 +1,5 @@
 class TicketsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create, :destroy]
+  before_action :authenticate_passenger!, only: [:new, :create, :destroy]
 
   def index
     @tickets = current_passenger.tickets
