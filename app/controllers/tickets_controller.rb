@@ -2,7 +2,7 @@ class TicketsController < ApplicationController
   before_action :authenticate_passenger!, only: [:create, :destroy]
 
   def index
-    @tickets = current_passenger.tickets
+    @tickets = Ticket.all
   end
 
   def new
@@ -10,11 +10,10 @@ class TicketsController < ApplicationController
   end
 
   def show
-    @ticket = Ticket.find(params[:id])
   end
 
   def create
-    @ticket = current_passenger.tickets.new(ticket_params)
+    @ticket = Ticket.new(ticket_params)
     if @ticket.save
       redirect_to ticket_path(@ticket)
     else
@@ -22,15 +21,24 @@ class TicketsController < ApplicationController
     end
   end
 
-    def destroy
-      @ticket = Ticket.find(params[:id])
-      @ticket.destroy
-      respond_to do |format|
-        format.html { redirect_to tickets_url, notice: 'Ticket was successfully destroyed.' }
-      end
+  def update
+    if @ticket.update(ticket_params)
+      redirect_to admin_tickets_url, notice: 'Ticket was successfully updated.'
+    else
+      render :edit
     end
+  end
+
+  def destroy
+    @ticket.destroy
+    redirect_to admin_tickets_url, notice: 'Ticket was successfully destroyed.'
+  end
 
   private
+
+  def set_ticket
+    @ticket = Ticket.find(params[:id])
+  end
 
   def ticket_params
     params.require(:ticket).permit(:passenger_fio, :passport_number, :first_station_id, :last_station_id, :train_id)
