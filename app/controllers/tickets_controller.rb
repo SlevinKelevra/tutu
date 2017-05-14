@@ -2,7 +2,7 @@ class TicketsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :destroy]
 
   def index
-    @tickets = current_user.tickets
+    @tickets = current_passenger.tickets
   end
 
   def new
@@ -14,7 +14,7 @@ class TicketsController < ApplicationController
   end
 
   def create
-    @ticket = current_user.tickets.new(ticket_params)
+    @ticket = current_passenger.tickets.new(ticket_params)
     if @ticket.save
       redirect_to ticket_path(@ticket)
     else
