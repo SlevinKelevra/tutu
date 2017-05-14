@@ -1,5 +1,5 @@
 class TicketsController < ApplicationController
-  before_action :authenticate_passenger!, only: [:create, :destroy]
+  before_action :authenticate_passenger!, only: [:new, :create, :destroy]
 
   def index
     @tickets = current_passenger.tickets
@@ -22,13 +22,13 @@ class TicketsController < ApplicationController
     end
   end
 
-    def destroy
-      @ticket = Ticket.find(params[:id])
-      @ticket.destroy
-      respond_to do |format|
-        format.html { redirect_to tickets_url, notice: 'Ticket was successfully destroyed.' }
-      end
+  def destroy
+    @ticket = Ticket.find(params[:id])
+    @ticket.destroy
+    respond_to do |format|
+      format.html { redirect_to tickets_url, notice: 'Ticket was successfully destroyed.' }
     end
+  end
 
   private
 
