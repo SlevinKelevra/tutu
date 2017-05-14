@@ -1,8 +1,8 @@
 class TicketsController < ApplicationController
-  before_action :set_ticket, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:new, :create, :destroy]
 
   def index
-    @tickets = Ticket.all
+    @tickets = current_user.tickets
   end
 
   def new
@@ -10,10 +10,11 @@ class TicketsController < ApplicationController
   end
 
   def show
+    @ticket = Ticket.find(params[:id])
   end
 
   def create
-    @ticket = Ticket.new(ticket_params)
+    @ticket = current_user.tickets.new(ticket_params)
     if @ticket.save
       redirect_to ticket_path(@ticket)
     else
@@ -21,24 +22,18 @@ class TicketsController < ApplicationController
     end
   end
 
-  def update
-    if @ticket.update(ticket_params)
-      redirect_to tickets_url, notice: 'Ticket was successfully updated.'
-    else
-      render :edit
-    end
-  end
-
   def destroy
+    @ticket = Ticket.find(params[:id])
     @ticket.destroy
-    redirect_to tickets_url, notice: 'Ticket was successfully destroyed.'
+    respond_to do |format|
+      format.html { redirect_to tickets_url, notice: 'Ticket was successfully destroyed.' }
+    end
   end
 
   private
 
-  def set_ticket
-    @ticket = Ticket.find(params[:id])
-  end
+  private
+
 
   def ticket_params
     params.require(:ticket).permit(:passenger_fio, :passport_number, :first_station_id, :last_station_id, :train_id)
