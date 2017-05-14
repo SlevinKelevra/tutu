@@ -25,7 +25,9 @@ class TicketsController < ApplicationController
   def destroy
     @ticket = Ticket.find(params[:id])
     @ticket.destroy
-    redirect_to ticket_url
+    respond_to do |format|
+      format.html { redirect_to tickets_url, notice: 'Ticket was successfully destroyed.' }
+    end
   end
 
   private
