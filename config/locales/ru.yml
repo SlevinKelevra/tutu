@@ -1,4 +1,10 @@
 ru:
+  layouts:
+    application:
+      admin_panel: 'Панель администратора'
+      my_tickets: 'Мои билеты'
+      sign_out: 'Выйти'
+      login: 'Войти'
   home_page:
     index:
       title: 'Главное меню'

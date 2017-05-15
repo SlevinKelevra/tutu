@@ -49,9 +49,14 @@
         <div class="navbar-collapse collapse navbar-responsive-collapse">
           <ul class="nav navbar-nav">
             <% if passenger_signed_in? %>
-                <li><%= link_to t('common.exit'), destroy_passenger_session_path, method: :delete %></li>
+                <% if current_passenger.admin? %>
+                    <li><%= link_to t('.admin_panel'), home_page_index_path %></li>
+                <% end %>
+                <li><%= link_to t('.my_tickets'), tickets_path %></li>
+                <li><%= link_to t('.sign_out'), destroy_passenger_session_path, method: :delete %></li>
             <% else %>
-                <li><%= link_to t('common.sign'), new_passenger_session_path  %></li>
+                <li><%= link_to t('.admin_panel'), home_page_index_path %></li>
+                <li><%= link_to t('.login'), new_passenger_session_path %></li>
             <% end %>
           </ul>
         </div>
